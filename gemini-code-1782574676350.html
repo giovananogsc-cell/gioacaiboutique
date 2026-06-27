@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa do Açaí | O Melhor de Taubaté</title>
+    <style>
+        /* ==========================================================================
+           CONFIGURAÇÕES GERAIS E PALETA DE CORES
+           ========================================================================== */
+        :root {
+            --purple-main: #6A1B9A;
+            --purple-dark: #4A148C;
+            --purple-light: #F3E5F5;
+            --purple-bg: #FAF5FF;
+            --lime-accent: #AEEA00;
+            --lime-hover: #9BE000;
+            --white: #FFFFFF;
+            --dark-text: #1A052E;
+            --light-text: #614E75;
+            --shadow: 0 10px 30px rgba(74, 20, 140, 0.08);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--dark-text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Container padrão */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Títulos Globais */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--purple-dark);
+            margin-bottom: 16px;
+            font-weight: 800;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--light-text);
+            max-width: 600px;
+            margin: 0 auto 48px auto;
+            font-size: 1.1rem;
+        }
+
+        /* Botões */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-whatsapp {
+            background-color: var(--lime-accent);
+            color: var(--purple-dark);
+            box-shadow: 0 4px 15px rgba(174, 234, 0, 0.4);
+        }
+
+        .btn-whatsapp:hover {
+            background-color: var(--lime-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(174, 234, 0, 0.6);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--purple-dark);
+            transform: translateY(-3px);
+        }
+
+        .btn-purple {
+            background-color: var(--purple-main);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(106, 27, 154, 0.2);
+        }
+
+        .btn-purple:hover {
+            background-color: var(--purple-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(74, 20, 140, 0.3);
+        }
+
+        /* Botão Flutuante do WhatsApp */
+        .float-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 999;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .float-whatsapp:hover {
+            transform: scale(1.1) rotate(10deg);
+            background-color: #128C7E;
+        }
+
+        .float-whatsapp svg {
+            width: 32px;
+            height: 32px;
+            fill: white;
+        }
+
+        /* ==========================================================================
+           HEADER / NAVBAR
+           ========================================================================== */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.03);
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--purple-dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--purple-main);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--purple-main);
+        }
+
+        /* ==========================================================================
+           HERO SECTION
+           ========================================================================== */
+        .hero {
+            background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple-main) 100%);
+            padding: 160px 0 100px 0;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://i.postimg.cc/63V1gsYb/image.png') center/cover no-repeat;
+            opacity: 0.08;
+            mix-blend-mode: overlay;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 48px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            line-height: 1.15;
+            font-weight: 900;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            font-weight: 400;
+            max-width: 540px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .hero-image-container {
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-image-container::after {
+            content: '';
+            position: absolute;
+            width: 380px;
+            height: 380px;
+            background: rgba(174, 234, 0, 0.15);
+            border-radius: 50%;
+            filter: blur(40px);
+            z-index: 1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .hero-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            z-index: 2;
+            transform: rotate(-2deg);
+            transition: var(--transition);
+        }
+
+        .hero-img:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        /* ==========================================================================
+           SOBRE NÓS
+           ========================================================================== */
+        .about {
+            padding: 100px 0;
+            background-color: var(--white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-img {
+            width: 100%;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            color: var(--purple-dark);
+            margin-bottom: 24px;
+            font-weight: 800;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            color: var(--light-text);
+            margin-bottom: 24px;
+        }
+
+        /* ==========================================================================
+           DIFERENCIAIS
+           ========================================================================== */
+        .features {
+            padding: 100px 0;
+            background-color: var(--purple-bg);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: var(--white);
+            padding: 40px 32px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(106, 27, 154, 0.03);
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(74, 20, 140, 0.12);
+        }
+
+        .feature-icon {
+            background-color: var(--purple-light);
+            color: var(--purple-dark);
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+
+        .feature-info h3 {
+            font-size: 1.25rem;
+            color: var(--purple-dark);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .feature-info p {
+            color: var(--light-text);
+            font-size: 0.95rem;
+        }
+
+        /* ==========================================================================
+           CARDÁPIO DE DESTAQUE
+           ========================================================================== */
+        .menu-section {
+            padding: 100px 0;
+            background-color: var(--white);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-card {
+            background-color: var(--white);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .menu-img-wrapper {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+            background-color: #eee;
+        }
+
+        .menu-card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .menu-card:hover .menu-card-img {
+            transform: scale(1.08);
+        }
+
+        .menu-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--purple-dark);
+            color: var(--white);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .menu-info {
+            padding: 24px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .menu-info h3 {
+            font-size: 1.3rem;
+            color: var(--purple-dark);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .menu-info p {
+            color: var(--light-text);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .menu-action {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            padding-top: 16px;
+        }
+
+        .menu-tag {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--purple-main);
+            background-color: var(--purple-light);
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .menu-btn-order {
+            color: var(--purple-dark);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: var(--transition);
+        }
+
+        .menu-btn-order:hover {
+            color: var(--purple-main);
+            gap: 8px;
+        }
+
+        /* ==========================================================================
+           DEPOIMENTOS (PROVA SOCIAL)
+           ========================================================================== */
+        .testimonials {
+            padding: 100px 0;
+            background-color: var(--purple-bg);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background-color: var(--white);
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .stars {
+            color: #FFC107;
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-text {
+            color: var(--light-text);
+            font-style: italic;
+            margin-bottom: 24px;
+            font-size: 1rem;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .user-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: var(--purple-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--purple-dark);
+        }
+
+        .user-details h4 {
+            font-size: 1rem;
+            color: var(--purple-dark);
+            font-weight: 700;
+        }
+
+        .user-details span {
+            font-size: 0.85rem;
+            color: #9b8ba3;
+        }
+
+        /* ==========================================================================
+           CALL TO ACTION (CTA)
+           ========================================================================== */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--purple-main) 0%, var(--purple-dark) 100%);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+        }
+
+        .cta-container {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 36px;
+            opacity: 0.9;
+        }
+
+        /* ==========================================================================
+           LOCALIZAÇÃO
+           ========================================================================== */
+        .location {
+            padding: 100px 0;
+            background-color: var(--white);
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .location-info h3 {
+            font-size: 2rem;
+            color: var(--purple-dark);
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .location-info p {
+            color: var(--light-text);
+            font-size: 1.05rem;
+            margin-bottom: 32px;
+        }
+
+        .location-details-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .location-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .location-icon {
+            color: var(--purple-main);
+            font-size: 1.3rem;
+            margin-top: 2px;
+        }
+
+        .location-text h4 {
+            font-size: 1.05rem;
+            color: var(--purple-dark);
+            margin-bottom: 4px;
+        }
+
+        .location-text p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        .map-container {
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 400px;
+            border: 4px solid var(--purple-light);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* ==========================================================================
+           FOOTER (RODAPÉ)
+           ========================================================================== */
+        footer {
+            background-color: var(--dark-text);
+            color: rgba(255,255,255,0.7);
+            padding: 60px 0 30px 0;
+            font-size: 0.95rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr repeat(2, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand p {
+            max-width: 320px;
+        }
+
+        .footer-links h4, .footer-contact h4 {
+            color: var(--white);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--lime-accent);
+            padding-left: 4px;
+        }
+
+        .footer-contact p {
+            margin-bottom: 12px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-icon {
+            background-color: rgba(255,255,255,0.05);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background-color: var(--purple-main);
+            transform: translateY(-3px);
+        }
+
+        /* ==========================================================================
+           RESPONSIVIDADE (MEDIA QUERIES)
+           ========================================================================== */
+        @media (max-width: 992px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 40px;
+            }
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            .hero-content p {
+                margin: 0 auto 32px auto;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .about-image-wrapper {
+                order: 2;
+            }
+            .location-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            .nav-menu {
+                display: none; /* Em produção adicionaria menu hamburguer */
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .cta-section h2 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        const CONFIG_CASA_ACAI = {
+            whatsapp_number: "5512999999999", // Altere para o número real com DDD de Taubaté
+            msg_geral: "Olá! Vi o site e gostaria de fazer um pedido de açaí.",
+            msg_tradicional: "Olá! Gostaria de pedir o Açaí Tradicional do site.",
+            msg_frutas: "Olá! Gostaria de pedir o Açaí com Frutas do site.",
+            msg_premium: "Olá! Gostaria de pedir o Açaí Premium do site.",
+            msg_combos: "Olá! Gostaria de conhecer as Combinações Especiais da casa."
+        };
+
+        function getWhatsLink(type) {
+            let base = `https://wa.me/${CONFIG_CASA_ACAI.whatsapp_number}?text=`;
+            if(type === 'tradicional') return base + encodeURIComponent(CONFIG_CASA_ACAI.msg_tradicional);
+            if(type === 'frutas') return base + encodeURIComponent(CONFIG_CASA_ACAI.msg_frutas);
+            if(type === 'premium') return base + encodeURIComponent(CONFIG_CASA_ACAI.msg_premium);
+            if(type === 'combos') return base + encodeURIComponent(CONFIG_CASA_ACAI.msg_combos);
+            return base + encodeURIComponent(CONFIG_CASA_ACAI.msg_geral);
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // Vincula dinamicamente os links corretos aos botões do WhatsApp
+            document.querySelectorAll(".link-wa-dinamico").forEach(btn => {
+                let target = btn.getAttribute("data-target") || 'geral';
+                btn.setAttribute("href", getWhatsLink(target));
+                btn.setAttribute("target", "_blank");
+            });
+        });
+    </script>
+
+    <a class="float-whatsapp link-wa-dinamico" data-target="geral" aria-label="Chamar no WhatsApp">
+        <svg viewBox="0 0 32 32">
+            <path d="M16 2a14 14 0 0 0-12.08 21.06L2 29l6.14-1.61A14 14 0 1 0 16 2zm7.62 19.82c-.32.91-1.6 1.77-2.61 1.92-.69.1-1.58.13-2.55-.2a13.3 13.3 0 0 1-5.69-3.55 11.23 11.23 0 0 1-2.45-4.22 5.61 5.61 0 0 1 .4-4.52c.26-.35.58-.72.88-1.07.32-.35.42-.58.61-.93.19-.38.1-.7-.03-1s-1.15-2.79-1.57-3.81c-.42-1-.83-1-1.15-1h-1a1.92 1.92 0 0 0-1.41.64c-.48.55-1.86 1.83-1.86 4.45s1.9 5.16 2.16 5.52 3.65 5.61 8.93 7.82c1.26.52 2.24.84 3 .1a5.06 5.06 0 0 0 1.5-1c.42-.42.54-.93.8-1.41a1.27 1.27 0 0 0-.07-1.31c-.13-.26-.54-.54-1.12-.83s-3.4-1.67-3.92-1.86-.92-.29-1.31.29-.1.67-1.5 2.24c-.16.19-.32.22-.51.13a11.13 11.13 0 0 1-3.77-2.33 12.3 12.3 0 0 1-2.61-3.26c-.19-.32 0-.48.09-.61s.42-.48.61-.71a3.15 3.15 0 0 0 .41-.58 1 1 0 0 0-.05-1c-.06-.16-.54-1.31-.74-1.83z"/>
+        </svg>
+    </a>
+
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">🍇 Casa do <span>Açaí</span></a>
+            <ul class="nav-menu">
+                <li><a href="#inicio" class="nav-link">Início</a></li>
+                <li><a href="#sobre" class="nav-link">Sobre Nós</a></li>
+                <li><a href="#diferenciais" class="nav-link">Diferenciais</a></li>
+                <li><a href="#cardapio" class="nav-link">Cardápio</a></li>
+                <li><a href="#depoimentos" class="nav-link">Depoimentos</a></li>
+                <li><a href="#localizacao" class="nav-link">Onde Estamos</a></li>
+                <li><a href="#cardapio" class="btn btn-purple" style="padding: 10px 20px; font-size: 0.9rem;">Ver Cardápio</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <h1>O Melhor Açaí do Parque Santa Terezinha em Taubaté!</h1>
+                <p>Cremoso, geladinho e preparado com ingredientes selecionados para deixar seu dia muito mais saboroso.</p>
+                <div class="hero-buttons">
+                    <a class="btn btn-whatsapp link-wa-dinamico" data-target="geral">💬 Pedir pelo WhatsApp</a>
+                    <a href="#cardapio" class="btn btn-outline">📋 Ver Cardápio</a>
+                </div>
+            </div>
+            <div class="hero-image-container">
+                <img src="https://i.postimg.cc/63V1gsYb/image.png" alt="Taça de Açaí Premium Completa" class="hero-img">
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="sobre">
+        <div class="container about-grid">
+            <div class="about-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&q=80&w=600" alt="Preparando Açaí Fresco" class="about-img">
+            </div>
+            <div class="about-content">
+                <h2>Conheça a Casa do Açaí</h2>
+                <p>Na Casa do Açaí, nossa missão é oferecer uma experiência única para quem ama açaí de verdade. Localizados no coração do Parque Santa Terezinha, nos tornamos o ponto de encontro perfeito para quem busca sabor aliado ao bem-estar.</p>
+                <p>Trabalhamos exclusivamente com polpa artesanal de alta cremosidade, garantindo que você sinta o verdadeiro frescor da fruta a cada colherada. Combinamos paixão, rapidez na entrega e os melhores acompanhamentos para adoçar a sua rotina!</p>
+                <a class="btn btn-purple link-wa-dinamico" data-target="geral">Fazer um Pedido Agora</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="diferenciais">
+        <div class="container">
+            <h2 class="section-title">Por que escolher a Casa do Açaí?</h2>
+            <p class="section-subtitle">Cuidamos de cada detalhe para entregar uma experiência incomparável em Taubaté.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⭐</div>
+                    <div class="feature-info">
+                        <h3>Açaí de alta qualidade</h3>
+                        <p>Textura ultra cremosa, sem cristais de gelo, feito com matéria-prima premium selecionada na origem.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🍃</div>
+                    <div class="feature-info">
+                        <h3>Ingredientes sempre frescos</h3>
+                        <p>Frutas cortadas na hora, granolas crocantes e coberturas das marcas mais renomadas do mercado.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🍌</div>
+                    <div class="feature-info">
+                        <h3>Grande variedade</h3>
+                        <p>Dezenas de complementos e Toppings exclusivos para você montar a combinação perfeita para o seu gosto.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <div class="feature-info">
+                        <h3>Atendimento rápido</h3>
+                        <p>Nossa equipe é treinada para preparar o seu copo ou tigela em tempo recorde, sem perder o capricho.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏠</div>
+                    <div class="feature-info">
+                        <h3>Ambiente acolhedor</h3>
+                        <p>Um espaço limpo, agradável e perfeito para reunir os amigos, a família ou dar aquela pausa após o treino.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛵</div>
+                    <div class="feature-info">
+                        <h3>Entrega rápida na região</h3>
+                        <p>Sistema de delivery otimizado para que seu pedido chegue geladinho e montado impecavelmente na sua casa.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="menu-section" id="cardapio">
+        <div class="container">
+            <h2 class="section-title">Nossos Favoritos</h2>
+            <p class="section-subtitle">As opções mais pedidas e amadas pelos moradores da região. Escolha o seu!</p>
+            
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <div class="menu-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?auto=format&fit=crop&q=70&w=400" alt="Açaí Tradicional" class="menu-card-img">
+                        <span class="menu-badge">Mais vendido</span>
+                    </div>
+                    <div class="menu-info">
+                        <div>
+                            <h3>Açaí Tradicional</h3>
+                            <p>O autêntico sabor do açaí puro batido na consistência perfeita. Ideal para os puristas ou para customizar totalmente do seu jeito.</p>
+                        </div>
+                        <div class="menu-action">
+                            <span class="menu-tag">Copos e Tigelas</span>
+                            <a class="menu-btn-order link-wa-dinamico" data-target="tradicional">Pedir ➔</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <div class="menu-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1600718374662-0483d2b9da44?auto=format&fit=crop&q=70&w=400" alt="Açaí com Frutas" class="menu-card-img">
+                        <span class="menu-badge" style="background-color:#00C853;">Frescor</span>
+                    </div>
+                    <div class="menu-info">
+                        <div>
+                            <h3>Açaí com Frutas</h3>
+                            <p>Super refrescante! Camadas generosas de açaí acompanhadas de morango fresco, banana em rodelas e um toque especial de kiwi ou manga.</p>
+                        </div>
+                        <div class="menu-action">
+                            <span class="menu-tag">Vitaminado</span>
+                            <a class="menu-btn-order link-wa-dinamico" data-target="frutas">Pedir ➔</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <div class="menu-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&q=70&w=400" alt="Açaí Premium" class="menu-card-img">
+                        <span class="menu-badge" style="background-color:#FF9100;">Completo</span>
+                    </div>
+                    <div class="menu-info">
+                        <div>
+                            <h3>Açaí Premium</h3>
+                            <p>Para quem não abre mão de ostentar sabor! Inclui leite em pó premium, leite condensado, Ovomaltine crocante e muito chocolate ou Nutella.</p>
+                        </div>
+                        <div class="menu-action">
+                            <span class="menu-tag">Doce Perfeito</span>
+                            <a class="menu-btn-order link-wa-dinamico" data-target="premium">Pedir ➔</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <div class="menu-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&q=70&w=400" alt="Combinações Especiais" class="menu-card-img">
+                        <span class="menu-badge" style="background-color:#E040FB;">Exclusivo</span>
+                    </div>
+                    <div class="menu-info">
+                        <div>
+                            <h3>Combinações da Casa</h3>
+                            <p>Receitas exclusivas criadas por nossos especialistas, balanceando perfeitamente energia para quem treina ou sobremesa para a família.</p>
+                        </div>
+                        <div class="menu-action">
+                            <span class="menu-tag">Vários Tamanhos</span>
+                            <a class="menu-btn-order link-wa-dinamico" data-target="combos">Pedir ➔</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="depoimentos">
+        <div class="container">
+            <h2 class="section-title">O que nossos clientes dizem</h2>
+            <p class="section-subtitle">A opinião de quem experimenta e vira fã da Casa do Açaí.</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"O melhor açaí de Taubaté disparado! Não tem aquele monte de gelo raspado, é super cremoso de verdade. Peço toda semana pelo WhatsApp e chega rapidinho aqui no Parque Aeroporto."</p>
+                    <div class="user-info">
+                        <div class="user-avatar">MA</div>
+                        <div class="user-details">
+                            <h4>Matheus Andrade</h4>
+                            <span>Praticante de Crossfit, 24 anos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"O atendimento é maravilhoso e as frutas estão sempre novinhas e doces. Meus filhos adoram o copo Premium entupido de leite ninho. O ambiente da loja física é super limpo!"</p>
+                    <div class="user-info">
+                        <div class="user-avatar">CR</div>
+                        <div class="user-details">
+                            <h4>Camila Ribeiro</h4>
+                            <span>Mãe e Moradora do Sta. Terezinha</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Pensa num açaí caprichado! Você pede os adicionais e eles realmente colocam bastante, não fica só por cima. Nota 10 para a rapidez da entrega e educação do motoboy."</p>
+                    <div class="user-info">
+                        <div class="user-avatar">LG</div>
+                        <div class="user-details">
+                            <h4>Lucas Gonçalves</h4>
+                            <span>Estudante, 19 anos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container cta-container">
+            <h2>Peça Agora Mesmo!</h2>
+            <p>Receba seu açaí favorito, montado do jeitinho que você mais gosta, sem precisar sair de casa.</p>
+            <a class="btn btn-whatsapp link-wa-dinamico" data-target="geral" style="font-size: 1.2rem; padding: 16px 36px;">
+                💬 Chamar no WhatsApp e Fazer Pedido
+            </a>
+        </div>
+    </section>
+
+    <section class="location" id="localizacao">
+        <div class="container location-grid">
+            <div class="location-info">
+                <h3>Estamos no Parque Santa Terezinha</h3>
+                <p>Venha nos visitar ou faça seu pedido online! Atendemos clientes de toda a região de Taubaté, especialmente dos bairros Parque Santa Terezinha, Parque Aeroporto e arredores com taxas super amigáveis.</p>
+                
+                <ul class="location-details-list">
+                    <div class="location-item">
+                        <div class="location-icon">📍</div>
+                        <div class="location-text">
+                            <h4>Endereço principal</h4>
+                            <p>Rua Principal do Bairro, nº 1500 - Parque Santa Terezinha, Taubaté - SP</p>
+                        </div>
+                    </div>
+                    <div class="location-item">
+                        <div class="location-icon">🕒</div>
+                        <div class="location-text">
+                            <h4>Horário de Funcionamento</h4>
+                            <p>Todos os dias: das 13h00 às 22h00<br><em>(Incluindo finais de semana e feriados)</em></p>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+            
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14660.47352328405!2d-45.53503615!3d-23.00105315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ccc4fb96bba07d%3A0xc3fecdf456041a7d!2sParque%20Santa%20Terezinha%2C%20Taubat%C3%A9%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1710000000000!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>🍇 Casa do Açaí</h3>
+                    <p>O verdadeiro sabor e cremosidade do açaí artesanal bem pertinho de você em Taubaté - SP.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#sobre">Sobre Nós</a></li>
+                        <li><a href="#cardapio">Nossos Favoritos</a></li>
+                        <li><a href="#localizacao">Onde Estamos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contato rápido</h4>
+                    <p>📞 (12) 99999-9999</p>
+                    <p>✉️ contato@casadoacaitaubate.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2026 Casa do Açaí Taubaté. Todos os direitos reservados.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon" aria-label="Instagram">📸</a>
+                    <a href="#" class="social-icon" aria-label="Facebook">👍</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
